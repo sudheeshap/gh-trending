@@ -1,7 +1,25 @@
 import React, { FC } from 'react';
 
-const Repositories: FC = () => {
-  return <div>Repositories</div>;
+import { RepositoryInterface } from '../interfaces/repository.interface';
+
+interface RepositoriesProps {
+  repositories: RepositoryInterface[];
+}
+
+const Repositories: FC<RepositoriesProps> = ({ repositories }) => {
+  if (repositories?.length === 0) {
+    return null;
+  }
+
+  return (
+    <>
+      {repositories.map((repository) => (
+        <article key={`${repository.username}/${repository.repositoryName}`}>
+          {repository.username}/{repository.repositoryName}
+        </article>
+      ))}
+    </>
+  );
 };
 
 export default Repositories;

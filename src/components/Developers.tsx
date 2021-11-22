@@ -1,7 +1,23 @@
 import React, { FC } from 'react';
 
-const Developers: FC = () => {
-  return <div>Developers</div>;
+import { DeveloperInterface } from '../interfaces/developer.interface';
+
+interface DevelopersProps {
+  developers: DeveloperInterface[];
+}
+
+const Developers: FC<DevelopersProps> = ({ developers }) => {
+  if (developers?.length === 0) {
+    return null;
+  }
+
+  return (
+    <>
+      {developers.map((developer) => (
+        <article key={`${developer.rank}`}>{developer.name}</article>
+      ))}
+    </>
+  );
 };
 
 export default Developers;
