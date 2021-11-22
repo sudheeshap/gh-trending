@@ -2,8 +2,8 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-import RespositoryPage from './pages/RepositoryPage';
-import DeveloperPage from './pages/DeveloperPage';
+import RespositoryPage from './pages/repository/RepositoryPage';
+import DeveloperPage from './pages/developer/DeveloperPage';
 
 const queryClient = new QueryClient();
 
