@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 
-import Repositories from 'components/Respositories';
 import { fetchRepositories } from 'api/trending';
 import { RepositoryInterface } from 'interfaces/repository.interface';
+import RepositoryList from '../../components/repository-list/RespositoryList';
 
 const RespositoryPage = () => {
   const [dateRange, setDateRange] = useState<string>('');
@@ -44,7 +44,7 @@ const RespositoryPage = () => {
   return (
     <>
       <h1>Repository</h1>
-      <Repositories repositories={data} />
+      <RepositoryList repositories={data} />
       {language}/{dateRange}/{spokenLangCode}
       <button onClick={onClickLanguage}>Set language</button>
       <button onClick={onClickDateRange}>Set date range</button>
