@@ -1,10 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 import Avatar from 'components/avatar/Avatar';
 import { Icon } from 'components/icon/Icon';
 import { getDefaultRepository } from 'utils/trending';
 import { RepositoryInterface } from '../../interfaces/repository.interface';
 import styles from './Repository.module.scss';
+import Button from 'components/button/Button';
 
 interface RepositoryProps {
   repository?: RepositoryInterface;
@@ -20,6 +21,8 @@ const textStarInfo: Record<string, string> = {
 };
 
 const Repository: FC<RepositoryProps> = ({ repository = defaultRepository, isPlaceholder }) => {
+  const [isStarActive, setStarActive] = useState<boolean>(false);
+
   const textRating = textStarInfo[repository.since]?.replace('{}', String(repository.starsSince));
 
   const renderContributors = () => {
@@ -30,10 +33,15 @@ const Repository: FC<RepositoryProps> = ({ repository = defaultRepository, isPla
     ));
   };
 
+  const handleClickStar = () => {
+    setStarActive((isStarActive) => !isStarActive);
+  };
+
   return (
     <>
       <article className={`${isPlaceholder ? styles.placeholder : ''} ${styles.container}`}>
         <h2 className={styles.title}>
+          <Icon name="repo" className={styles.titleIcon} width={16} height={16} />
           <a href={repository.url} className={styles.titleLink}>
             <>
               {repository.username}
@@ -42,6 +50,15 @@ const Repository: FC<RepositoryProps> = ({ repository = defaultRepository, isPla
             </>
           </a>
         </h2>
+
+        <Button
+          icon={`${isStarActive ? 'unstar' : 'star'}`}
+          className={styles.starButton}
+          onClick={handleClickStar}
+        >
+          {isStarActive && 'Unstar'}
+          {!isStarActive && 'Star'}
+        </Button>
 
         <p className={styles.description}>{repository.description}</p>
 

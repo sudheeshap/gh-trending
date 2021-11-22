@@ -17,10 +17,6 @@ const RepositoryPage = () => {
     () => fetchRepositories({ language, dateRange, spokenLangCode }),
   );
 
-  // if (isLoading) {
-  //   return <RepositoryList isPlaceholder={isLoading} />;
-  // }
-
   if (isError) {
     return <div>Error! {error?.message}</div>;
   }
@@ -70,7 +66,6 @@ const RepositoryPage = () => {
       <h1>Repository</h1>
       <ListHeader actions={renderActions()} />
       <RepositoryList repositories={data} isPlaceholder={isLoading} />
-      {language}/{dateRange}/{spokenLangCode}
     </section>
   );
 };
