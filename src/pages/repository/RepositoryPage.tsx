@@ -3,53 +3,75 @@ import { useQuery } from 'react-query';
 
 import { fetchRepositories } from 'api/trending';
 import { RepositoryInterface } from 'interfaces/repository.interface';
-import RepositoryList from '../../components/repository-list/RespositoryList';
+import ListHeader from 'components/list-header/ListHeader';
+import Button from 'components/button/Button';
+import RepositoryList from 'components/repository-list/RepositoryList';
 
-const RespositoryPage = () => {
+const RepositoryPage = () => {
   const [dateRange, setDateRange] = useState<string>('');
   const [language, setLanguage] = useState<string>('');
   const [spokenLangCode, setSpokenLangCode] = useState<string>('');
 
-  const { data, error, isError, isLoading } = useQuery<
-    RepositoryInterface[],
-    Error
-  >(['repositories', { language, dateRange, spokenLangCode }], () =>
-    fetchRepositories({ language, dateRange, spokenLangCode }),
+  const { data, error, isError, isLoading } = useQuery<RepositoryInterface[], Error>(
+    ['repositories', { language, dateRange, spokenLangCode }],
+    () => fetchRepositories({ language, dateRange, spokenLangCode }),
   );
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <RepositoryList isPlaceholder={isLoading} />;
+  // }
 
   if (isError) {
     return <div>Error! {error?.message}</div>;
   }
 
-  if (!data) {
+  if (!isLoading && !data) {
     return null;
   }
 
-  const onClickLanguage = () => {
-    setLanguage('javascript');
+  const handleChangeFilter = (key: string, value: string) => {
+    const operations: Record<string, React.Dispatch<React.SetStateAction<string>>> = {
+      spokenLang: setSpokenLangCode,
+      language: setLanguage,
+      dateRange: setDateRange,
+    };
+
+    if (!operations[key]) {
+      return;
+    }
+
+    operations[key](value);
   };
 
-  const onClickDateRange = () => {
-    setDateRange('monthly');
+  const renderActions = () => {
+    return (
+      <>
+        <Button icon="star" onClick={() => handleChangeFilter('spokenLang', 'fr')}>
+          Spoken language
+        </Button>
+        <Button onClick={() => handleChangeFilter('language', 'python')}>Language</Button>
+        <Button onClick={() => handleChangeFilter('dateRange', 'monthly')}>Date range</Button>
+      </>
+    );
   };
 
-  const onClickSpokenLangCode = () => {
-    setSpokenLangCode('fr');
-  };
+  // const renderActions = () => {
+  //   return (
+  //     <ToggleButtonGroup
+  //       options={categoryOptions}
+  //       selected={selectedCategory}
+  //       onClick={handleClickCategory}
+  //     />
+  //   );
+  // };
 
   return (
-    <>
+    <section>
       <h1>Repository</h1>
-      <RepositoryList repositories={data} />
+      <ListHeader actions={renderActions()} />
+      <RepositoryList repositories={data} isPlaceholder={isLoading} />
       {language}/{dateRange}/{spokenLangCode}
-      <button onClick={onClickLanguage}>Set language</button>
-      <button onClick={onClickDateRange}>Set date range</button>
-      <button onClick={onClickSpokenLangCode}>Set spoken lang</button>
-    </>
+    </section>
   );
 };
-export default RespositoryPage;
+export default RepositoryPage;

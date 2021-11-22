@@ -1,0 +1,75 @@
+@import '../../styles/variables.scss';
+
+.container {
+  border-top: 1px solid $list-border-color;
+  margin-top: -1px;
+  padding: 16px;
+}
+
+.title {
+  font-size: 20px;
+  margin: 0;
+  font-weight: normal;
+  line-height: 1.25;
+}
+
+.titleLink {
+  color: $color-link;
+  text-decoration: none;
+}
+
+.titleLink:hover {
+  text-decoration: underline;
+}
+
+.titleLink span {
+  font-weight: 600;
+}
+
+.description {
+  color: $color-muted;
+  margin: 4px 0;
+  max-width: 75%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.placeholder .title {
+  background-color: $placeholder-bg;
+  width: 40%;
+  height: 20px;
+  margin-bottom: 5px;
+}
+
+.infoContainer {
+  color: $color-muted;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.infoLeft span {
+  margin-right: 16px;
+}
+
+.icon {
+  vertical-align: text-bottom;
+  fill: $color-muted;
+  margin-right: 5px;
+}
+
+.iconLink {
+  color: $color-muted;
+  text-decoration: none;
+  margin-right: 16px;
+}
+
+.iconLink:hover {
+  color: $color-link;
+}
+
+.iconLink:hover .icon {
+  fill: $color-link;
+}

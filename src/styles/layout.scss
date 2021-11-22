@@ -1,0 +1,36 @@
+@import './variables.scss';
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: $bg-primary;
+  color: $color-primary;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji';
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+main {
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 40px;
+  box-sizing: border-box;
+}
+
+main > section {
+  padding: 0 20px;
+}
+
+@media screen and (min-width: 800px) {
+  main > section {
+    max-width: 1012px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}

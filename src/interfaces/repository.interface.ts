@@ -10,4 +10,9 @@ export interface RepositoryInterface {
   totalStars: number;
   url: string;
   username: string;
+  builtBy: Array<{
+    avatar: string;
+    url: string;
+    username: string;
+  }>;
 }
