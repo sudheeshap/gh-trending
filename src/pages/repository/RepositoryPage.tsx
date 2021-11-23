@@ -3,26 +3,29 @@ import { useQuery } from 'react-query';
 
 import { fetchRepositories } from 'api/trending';
 import { RepositoryInterface } from 'interfaces/repository.interface';
-import ListHeader from 'components/list-header/ListHeader';
-import Button from 'components/button/Button';
-import RepositoryList from 'components/repository-list/RepositoryList';
+import ListHeader from 'components/feature/list-header/ListHeader';
+import RepositoryList from 'components/feature/repository-list/RepositoryList';
+import Select from 'components/shared/select/Select';
+import Message from 'components/shared/message/Message';
+import Header from 'components/shared/header/Header';
+import Footer from 'components/shared/footer/Footer';
 
 const RepositoryPage = () => {
   const [dateRange, setDateRange] = useState<string>('');
   const [language, setLanguage] = useState<string>('');
   const [spokenLangCode, setSpokenLangCode] = useState<string>('');
 
-  const { data, error, isError, isLoading } = useQuery<RepositoryInterface[], Error>(
+  const { data, isError, isLoading } = useQuery<RepositoryInterface[], Error>(
     ['repositories', { language, dateRange, spokenLangCode }],
     () => fetchRepositories({ language, dateRange, spokenLangCode }),
   );
 
   if (isError) {
-    return <div>Error! {error?.message}</div>;
+    return <Message text="Some error happened" />;
   }
 
   if (!isLoading && !data) {
-    return null;
+    return <Message text="No results found" />;
   }
 
   const handleChangeFilter = (key: string, value: string) => {
@@ -42,31 +45,43 @@ const RepositoryPage = () => {
   const renderActions = () => {
     return (
       <>
-        <Button icon="star" onClick={() => handleChangeFilter('spokenLang', 'fr')}>
-          Spoken language
-        </Button>
-        <Button onClick={() => handleChangeFilter('language', 'python')}>Language</Button>
-        <Button onClick={() => handleChangeFilter('dateRange', 'monthly')}>Date range</Button>
+        <Select
+          label="Spoken Language:"
+          onChange={(value) => handleChangeFilter('spokenLang', value)}
+        >
+          <Select.Header>Select a spoken language</Select.Header>
+          <Select.Item value="en">English</Select.Item>
+          <Select.Item value="fr">French</Select.Item>
+        </Select>
+
+        <Select label="Language:" onChange={(value) => handleChangeFilter('language', value)}>
+          <Select.Header>Select a language</Select.Header>
+          <Select.Item value="javascript">JavaScript</Select.Item>
+          <Select.Item value="python">Python</Select.Item>
+        </Select>
+
+        <Select label="Date range:" onChange={(value) => handleChangeFilter('dateRange', value)}>
+          <Select.Header>Adjust time span</Select.Header>
+          <Select.Item value="daily">Today</Select.Item>
+          <Select.Item value="weekly">This week</Select.Item>
+          <Select.Item value="monthly">This month</Select.Item>
+        </Select>
       </>
     );
   };
 
-  // const renderActions = () => {
-  //   return (
-  //     <ToggleButtonGroup
-  //       options={categoryOptions}
-  //       selected={selectedCategory}
-  //       onClick={handleClickCategory}
-  //     />
-  //   );
-  // };
-
   return (
-    <section>
-      <h1>Repository</h1>
-      <ListHeader actions={renderActions()} />
-      <RepositoryList repositories={data} isPlaceholder={isLoading} />
-    </section>
+    <>
+      <Header
+        title="Trending"
+        subTitle="See what the GitHub community is most excited about today."
+      />
+      <section>
+        <ListHeader actions={renderActions()} />
+        <RepositoryList repositories={data} isPlaceholder={isLoading} />
+        <Footer />
+      </section>
+    </>
   );
 };
 export default RepositoryPage;

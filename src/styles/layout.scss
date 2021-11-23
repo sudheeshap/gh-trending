@@ -19,16 +19,16 @@ body {
 main {
   width: 100%;
   margin: 0 auto;
-  padding-top: 40px;
   box-sizing: border-box;
 }
 
 main > section {
-  padding: 0 20px;
+  padding: 20px;
 }
 
 @media screen and (min-width: 800px) {
   main > section {
+    padding-top: 40px;
     max-width: 1012px;
     margin-right: auto;
     margin-left: auto;

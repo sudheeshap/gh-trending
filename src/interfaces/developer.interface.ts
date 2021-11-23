@@ -5,4 +5,9 @@ export interface DeveloperInterface {
   since: string;
   url: string;
   username: string;
+  popularRepository: {
+    description: string;
+    repositoryName: string;
+    url: string;
+  };
 }

@@ -1,0 +1,23 @@
+@import '../../../styles/variables.scss';
+
+.container {
+  padding: 16px;
+  background-color: $bg-secondary;
+  border: 1px solid $border-color;
+  border-radius: 6px 6px 0 0;
+  margin-bottom: -1px;
+}
+
+@media screen and (min-width: 800px) {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .actionContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}

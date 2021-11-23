@@ -25,3 +25,17 @@ export const getDefaultRepository = () => ({
   username: '',
   builtBy: [],
 });
+
+export const getDefaultDeveloper = () => ({
+  avatar: '',
+  name: '',
+  rank: null,
+  since: '',
+  url: '',
+  username: '',
+  popularRepository: {
+    description: '',
+    repositoryName: '',
+    url: '',
+  },
+});

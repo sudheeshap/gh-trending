@@ -1,0 +1,114 @@
+@import '../../../styles/variables.scss';
+
+.container {
+  border-top: 1px solid $list-border-color;
+  margin-top: -1px;
+  padding: 16px;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.rank {
+  color: $color-muted;
+  font-size: 12px;
+  margin-right: 16px;
+}
+
+.developerContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 38%;
+}
+
+.title {
+  font-size: 20px;
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.titleLink,
+.repoTitleLink {
+  color: $color-link;
+  text-decoration: none;
+}
+
+.titleIcon {
+  fill: $color-muted;
+  vertical-align: text-bottom;
+  margin-right: 6px;
+}
+
+.repoTitleLink {
+  font-size: 16px;
+}
+
+.titleLink:hover,
+.repoTitleLink:hover {
+  text-decoration: underline;
+}
+
+.titleLink span {
+  font-weight: 600;
+}
+
+.titleContainer {
+  margin-left: 16px;
+}
+
+.username {
+  color: $color-muted;
+  margin: 0;
+  font-size: 16px;
+}
+
+.followButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.repoHeader {
+  color: $color-muted;
+  font-size: 12px;
+}
+
+.repoIcon {
+  margin-bottom: -7px;
+}
+
+.description {
+  color: $color-muted;
+  margin: 4px 0;
+  max-width: 50%;
+  white-space: wrap;
+}
+
+.placeholder .repoTitleLink {
+  background-color: $placeholder-bg;
+  width: 40%;
+  height: 16px;
+  display: inline-block;
+}
+
+.placeholder .title {
+  background-color: $placeholder-bg;
+  width: 150px;
+  height: 14px;
+  margin-bottom: 10px;
+}
+
+.placeholder .username {
+  background-color: $placeholder-bg;
+  width: 80px;
+  height: 12px;
+}
+
+.placeholder .rank {
+  background-color: $placeholder-bg;
+  width: 15px;
+  height: 15px;
+}

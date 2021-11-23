@@ -1,0 +1,23 @@
+@import '../../../styles/variables.scss';
+
+.avatar {
+  display: inline-block;
+  overflow: hidden;
+  line-height: 1;
+  vertical-align: middle;
+  background-color: $bg-primary;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px $avatar-border-color;
+  width: 20px;
+  height: 20px;
+  margin: 0 3px;
+}
+
+.medium {
+  width: 48px;
+  height: 48px;
+}
+
+.avatarImage {
+  max-height: 100%;
+}
