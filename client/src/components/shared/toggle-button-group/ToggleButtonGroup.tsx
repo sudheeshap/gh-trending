@@ -30,14 +30,3 @@ const ToggleButtonGroup: FC<ToggleButtonGroupProps> = ({ options, selected, onCl
 };
 
 export default ToggleButtonGroup;
-
-// ToggleButtonGroup.propTypes = {
-//   options: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       value: PropTypes.string,
-//       text: PropTypes.string,
-//     }),
-//   ).isRequired,
-//   selected: PropTypes.arrayOf(PropTypes.string).isRequired,
-//   onClick: PropTypes.func.isRequired,
-// };
