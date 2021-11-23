@@ -1,9 +1,7 @@
 const host = 'http://localhost:8000';
 
 export const fetchRepositories = async (params: Record<string, string>) => {
-  let url: URL = new URL(
-    `${host}/api/repositories${params.language ? `/${params.language}` : ''}`,
-  );
+  let url: URL = new URL(`${host}/api/repositories${params.language ? `/${params.language}` : ''}`);
 
   if (params.dateRange) {
     url.searchParams.append('since', params.dateRange);
@@ -19,9 +17,7 @@ export const fetchRepositories = async (params: Record<string, string>) => {
 };
 
 export const fetchDevelopers = async (params: Record<string, string>) => {
-  let url: URL = new URL(
-    `${host}/api/developers${params.language ? `/${params.language}` : ''}`,
-  );
+  let url: URL = new URL(`${host}/api/developers${params.language ? `/${params.language}` : ''}`);
 
   if (params.dateRange) {
     url.searchParams.append('since', params.dateRange);

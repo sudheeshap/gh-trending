@@ -10,7 +10,7 @@ const queryClient = new QueryClient();
 const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <main>
+      <main data-testid="app-main">
         <Routes>
           <Route path="/" element={<RepositoryPage />} />
           <Route path="/repositories" element={<RepositoryPage />} />

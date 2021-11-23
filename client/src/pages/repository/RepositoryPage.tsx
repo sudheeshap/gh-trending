@@ -47,6 +47,7 @@ const RepositoryPage = () => {
       <>
         <Select
           label="Spoken Language:"
+          testId="select-spoken-lang"
           onChange={(value) => handleChangeFilter('spokenLang', value)}
         >
           <Select.Header>Select a spoken language</Select.Header>
@@ -54,13 +55,21 @@ const RepositoryPage = () => {
           <Select.Item value="fr">French</Select.Item>
         </Select>
 
-        <Select label="Language:" onChange={(value) => handleChangeFilter('language', value)}>
+        <Select
+          label="Language:"
+          testId="select-language"
+          onChange={(value) => handleChangeFilter('language', value)}
+        >
           <Select.Header>Select a language</Select.Header>
           <Select.Item value="javascript">JavaScript</Select.Item>
           <Select.Item value="python">Python</Select.Item>
         </Select>
 
-        <Select label="Date range:" onChange={(value) => handleChangeFilter('dateRange', value)}>
+        <Select
+          label="Date range:"
+          testId="select-date"
+          onChange={(value) => handleChangeFilter('dateRange', value)}
+        >
           <Select.Header>Adjust time span</Select.Header>
           <Select.Item value="daily">Today</Select.Item>
           <Select.Item value="weekly">This week</Select.Item>

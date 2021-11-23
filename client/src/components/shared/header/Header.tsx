@@ -9,7 +9,7 @@ export interface HeaderProps {
 
 const Header: FC<HeaderProps> = ({ title, subTitle }) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="app-header">
       <h1 className={styles.title}>{title}</h1>
       <p className={styles.subTitle}>{subTitle}</p>
     </div>
