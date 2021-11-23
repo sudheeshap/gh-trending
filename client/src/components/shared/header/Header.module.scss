@@ -1,0 +1,19 @@
+@import '../../../styles/variables.scss';
+
+.container {
+  background-color: $bg-secondary;
+  border-bottom: 1px solid $border-color;
+  padding: 40px 16px;
+  text-align: center;
+}
+
+.title {
+  font-size: 32px;
+  margin: 0;
+}
+
+.subTitle {
+  color: $color-muted;
+  font-size: 16px;
+  margin: 0 auto 10px;
+}

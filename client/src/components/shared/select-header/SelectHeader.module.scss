@@ -1,0 +1,10 @@
+@import '../../../styles/variables.scss';
+
+.container {
+  border-bottom: 1px solid $border-color;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 10px;
+  white-space: nowrap;
+}
