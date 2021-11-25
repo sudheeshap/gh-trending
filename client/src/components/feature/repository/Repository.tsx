@@ -38,7 +38,10 @@ const Repository: FC<RepositoryProps> = ({ repository = defaultRepository, isPla
   };
 
   return (
-    <article className={`${isPlaceholder ? styles.placeholder : ''} ${styles.container}`}>
+    <article
+      className={`${isPlaceholder ? styles.placeholder : ''} ${styles.container}`}
+      data-testid="repository"
+    >
       <h2 className={styles.title}>
         <Icon name="repo" className={styles.titleIcon} width={16} height={16} />
         <a href={repository.url} className={styles.titleLink}>

@@ -1,29 +1,27 @@
 import React from 'react';
 
-import { render } from 'test-utils';
+import { renderWithRouter } from 'test-utils';
 import RepositoryPage from './RepositoryPage';
 
 describe('RepositoryPage', () => {
   it('should render a header', () => {
-    const { getByTestId } = render(<RepositoryPage />);
+    const { getByTestId } = renderWithRouter(<RepositoryPage />);
     const appHeader = getByTestId('app-header');
 
     expect(appHeader).toBeInTheDocument();
   });
 
-  it('should render page header with title and description', () => {
-    expect(1).toEqual(2);
+  it('should render a list', () => {
+    const { getByTestId } = renderWithRouter(<RepositoryPage />);
+    const repoList = getByTestId('repository-list');
+
+    expect(repoList).toBeInTheDocument();
   });
 
-  it('should render repository list placeholder', () => {
-    expect(1).toEqual(2);
-  });
+  it('should render a footer', () => {
+    const { getByTestId } = renderWithRouter(<RepositoryPage />);
+    const appFooter = getByTestId('app-footer');
 
-  it('should render error state on repository fetch fail', () => {
-    expect(1).toEqual(2);
-  });
-
-  it('should render repository list on fetch success', () => {
-    expect(1).toEqual(2);
+    expect(appFooter).toBeInTheDocument();
   });
 });

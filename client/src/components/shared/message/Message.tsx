@@ -8,7 +8,7 @@ export interface MessageProps {
 
 const Message: FC<MessageProps> = ({ text }) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="message">
       <h3 data-testid="message-text">{text}</h3>
     </div>
   );
