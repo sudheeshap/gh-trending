@@ -11,9 +11,12 @@ export const fetchRepositories = async (params: Record<string, string>) => {
     url.searchParams.append('spoken_language_code', params.spokenLangCode);
   }
 
-  return fetch(String(url))
-    .then((response) => response.json())
-    .catch((error) => error);
+  const response = await fetch(String(url));
+
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.json();
 };
 
 export const fetchDevelopers = async (params: Record<string, string>) => {
@@ -23,7 +26,10 @@ export const fetchDevelopers = async (params: Record<string, string>) => {
     url.searchParams.append('since', params.dateRange);
   }
 
-  return fetch(String(url))
-    .then((response) => response.json())
-    .catch((error) => error);
+  const response = await fetch(String(url));
+
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.json();
 };
