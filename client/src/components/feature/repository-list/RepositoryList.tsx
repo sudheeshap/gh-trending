@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import { useQuery } from 'react-query';
 
 import Repository from '../repository/Repository';
@@ -8,6 +8,7 @@ import ListHeader from 'components/feature/list-header/ListHeader';
 import Select from 'components/shared/select/Select';
 import { fetchRepositories } from 'api/trending';
 import Message from 'components/shared/message/Message';
+import { getSelectOptions } from 'utils/trending';
 
 const repositoriesCount = 25;
 
@@ -35,42 +36,29 @@ const RepositoryList: FC = () => {
     operations[key](value);
   };
 
-  const renderActions = () => {
+  const renderActions = useCallback(() => {
+    const options = getSelectOptions(['spokenLang', 'language', 'dateRange']);
+
     return (
       <>
-        <Select
-          label="Spoken Language:"
-          testId="select-spoken-lang"
-          onChange={(value) => handleChangeFilter('spokenLang', value)}
-        >
-          <Select.Header>Select a spoken language</Select.Header>
-          <Select.Item value="en">English</Select.Item>
-          <Select.Item value="fr">French</Select.Item>
-        </Select>
-
-        <Select
-          label="Language:"
-          testId="select-language"
-          onChange={(value) => handleChangeFilter('language', value)}
-        >
-          <Select.Header>Select a language</Select.Header>
-          <Select.Item value="javascript">JavaScript</Select.Item>
-          <Select.Item value="python">Python</Select.Item>
-        </Select>
-
-        <Select
-          label="Date range:"
-          testId="select-date"
-          onChange={(value) => handleChangeFilter('dateRange', value)}
-        >
-          <Select.Header>Adjust time span</Select.Header>
-          <Select.Item value="daily">Today</Select.Item>
-          <Select.Item value="weekly">This week</Select.Item>
-          <Select.Item value="monthly">This month</Select.Item>
-        </Select>
+        {options.map((option) => (
+          <Select
+            key={option.key}
+            label={option.label}
+            testId={`select-${option.key}`}
+            onChange={(value) => handleChangeFilter(option.key, value)}
+          >
+            <Select.Header>{option.label}</Select.Header>
+            {option.options.map((option) => (
+              <Select.Item key={option.value} value={option.value}>
+                {option.text}
+              </Select.Item>
+            ))}
+          </Select>
+        ))}
       </>
     );
-  };
+  }, []);
 
   const renderRepositories = () => {
     if (isError) {
