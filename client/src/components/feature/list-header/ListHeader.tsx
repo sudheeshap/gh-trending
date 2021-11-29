@@ -23,7 +23,7 @@ const ListHeader: FC<ListHeaderProps> = ({ actions }) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="list-header">
       <ToggleButtonGroup
         options={categoryOptions}
         selected={selectedCategory}
