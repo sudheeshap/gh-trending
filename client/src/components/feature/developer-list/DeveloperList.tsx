@@ -6,7 +6,7 @@ import styles from './DeveloperList.module.scss';
 import { DeveloperInterface } from 'interfaces/developer.interface';
 import ListHeader from 'components/feature/list-header/ListHeader';
 import Select from 'components/shared/select/Select';
-import { fetchRepositories } from 'api/trending';
+import { fetchDevelopers } from 'api/trending';
 import Message from 'components/shared/message/Message';
 
 const developersCount = 25;
@@ -14,16 +14,14 @@ const developersCount = 25;
 const DeveloperList: FC = () => {
   const [dateRange, setDateRange] = useState<string>('');
   const [language, setLanguage] = useState<string>('');
-  const [spokenLangCode, setSpokenLangCode] = useState<string>('');
 
   const { data, isError, isLoading } = useQuery<DeveloperInterface[], Error>(
-    ['developers', { language, dateRange, spokenLangCode }],
-    () => fetchRepositories({ language, dateRange, spokenLangCode }),
+    ['developers', { language, dateRange }],
+    () => fetchDevelopers({ language, dateRange }),
   );
 
   const handleChangeFilter = (key: string, value: string) => {
     const operations: Record<string, React.Dispatch<React.SetStateAction<string>>> = {
-      spokenLang: setSpokenLangCode,
       language: setLanguage,
       dateRange: setDateRange,
     };
@@ -54,7 +52,7 @@ const DeveloperList: FC = () => {
     );
   };
 
-  const renderRepositories = () => {
+  const renderDevelopers = () => {
     if (isError) {
       return <Message text="Some error happened" />;
     }
@@ -81,7 +79,7 @@ const DeveloperList: FC = () => {
   return (
     <div data-testid="developer-list">
       <ListHeader actions={renderActions()} />
-      <div className={styles.container}>{renderRepositories()}</div>
+      <div className={styles.container}>{renderDevelopers()}</div>
     </div>
   );
 };
