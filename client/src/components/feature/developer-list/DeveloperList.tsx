@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import { useQuery } from 'react-query';
 
 import Developer from '../developer/Developer';
@@ -8,6 +8,8 @@ import ListHeader from 'components/feature/list-header/ListHeader';
 import Select from 'components/shared/select/Select';
 import { fetchDevelopers } from 'api/trending';
 import Message from 'components/shared/message/Message';
+import { getSelectOptions } from 'utils/trending';
+import { OptionInterface } from 'interfaces/option.interface';
 
 const developersCount = 25;
 
@@ -33,24 +35,31 @@ const DeveloperList: FC = () => {
     operations[key](value);
   };
 
-  const renderActions = () => {
+  const renderActions = useCallback(() => {
+    const selectOptions = getSelectOptions(['language', 'dateRange']);
+
     return (
       <>
-        <Select label="Language:" onChange={(value) => handleChangeFilter('language', value)}>
-          <Select.Header>Select a language</Select.Header>
-          <Select.Item value="javascript">JavaScript</Select.Item>
-          <Select.Item value="python">Python</Select.Item>
-        </Select>
+        {selectOptions.map((selectOption) => (
+          <Select
+            defaultText="Any"
+            key={selectOption.key}
+            label={selectOption.label}
+            testId={`select-${selectOption.key}`}
+            onChange={(value) => handleChangeFilter(selectOption.key, value)}
+          >
+            <Select.Header>{selectOption.label}</Select.Header>
 
-        <Select label="Date range:" onChange={(value) => handleChangeFilter('dateRange', value)}>
-          <Select.Header>Adjust time span</Select.Header>
-          <Select.Item value="daily">Today</Select.Item>
-          <Select.Item value="weekly">This week</Select.Item>
-          <Select.Item value="monthly">This month</Select.Item>
-        </Select>
+            {selectOption.options.map((option: OptionInterface) => (
+              <Select.Item key={option.value} value={option.value}>
+                {option.text}
+              </Select.Item>
+            ))}
+          </Select>
+        ))}
       </>
     );
-  };
+  }, []);
 
   const renderDevelopers = () => {
     if (isError) {
