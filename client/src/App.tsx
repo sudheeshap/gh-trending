@@ -5,7 +5,13 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import RepositoryPage from './pages/repository/RepositoryPage';
 import DeveloperPage from './pages/developer/DeveloperPage';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+  },
+});
 
 const App: React.FC = () => {
   return (
