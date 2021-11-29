@@ -9,6 +9,7 @@ import Select from 'components/shared/select/Select';
 import { fetchRepositories } from 'api/trending';
 import Message from 'components/shared/message/Message';
 import { getSelectOptions } from 'utils/trending';
+import { OptionInterface } from '../../../interfaces/option.interface';
 
 const repositoriesCount = 25;
 
@@ -37,19 +38,21 @@ const RepositoryList: FC = () => {
   };
 
   const renderActions = useCallback(() => {
-    const options = getSelectOptions(['spokenLang', 'language', 'dateRange']);
+    const selectOptions = getSelectOptions(['spokenLang', 'language', 'dateRange']);
 
     return (
       <>
-        {options.map((option) => (
+        {selectOptions.map((selectOption) => (
           <Select
-            key={option.key}
-            label={option.label}
-            testId={`select-${option.key}`}
-            onChange={(value) => handleChangeFilter(option.key, value)}
+            defaultText="Any"
+            key={selectOption.key}
+            label={selectOption.label}
+            testId={`select-${selectOption.key}`}
+            onChange={(value) => handleChangeFilter(selectOption.key, value)}
           >
-            <Select.Header>{option.label}</Select.Header>
-            {option.options.map((option) => (
+            <Select.Header>{selectOption.label}</Select.Header>
+
+            {selectOption.options.map((option: OptionInterface) => (
               <Select.Item key={option.value} value={option.value}>
                 {option.text}
               </Select.Item>

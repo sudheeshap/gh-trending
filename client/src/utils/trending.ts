@@ -1,4 +1,4 @@
-import { SelectInputInterface } from 'interfaces/option-group.interface';
+import { SelectInputInterface } from 'interfaces/select-input.interface';
 
 export const getToggleButtonOptions = () => {
   return [

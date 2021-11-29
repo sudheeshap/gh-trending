@@ -1,7 +1,9 @@
 import React, { useState, FC, useRef, ReactNode } from 'react';
 
-import SelectItem, { SelectItemProps } from 'components/shared/select-item/SelectItem';
-import SelectHeader, { SelectHeaderProps } from 'components/shared/select-header/SelectHeader';
+import SelectItem, { SelectItemProps } from 'components/shared/select/select-item/SelectItem';
+import SelectHeader, {
+  SelectHeaderProps,
+} from 'components/shared/select/select-header/SelectHeader';
 import styles from './Select.module.scss';
 import { SelectContext } from 'context/Select.context';
 import useClickOutside from 'hooks/useClickOutside';
@@ -10,6 +12,7 @@ export interface SelectProps {
   children: ReactNode;
   label: string;
   testId?: string;
+  defaultText?: string;
   onChange: (value: string) => void;
 }
 
@@ -17,11 +20,12 @@ const Select: FC<SelectProps> & { Header: FC<SelectHeaderProps>; Item: FC<Select
   children,
   label,
   testId,
+  defaultText = '',
   onChange,
 }) => {
   const [isOpen, setOpen] = useState<boolean>(false);
   const [value, setSelectionValue] = useState<string>('');
-  const [text, setSelectionText] = useState<string>('Any');
+  const [text, setSelectionText] = useState<string>(defaultText);
 
   const ref = useRef<HTMLDivElement>(null);
 
