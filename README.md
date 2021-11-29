@@ -9,7 +9,7 @@ So, we should start server first, by:
 
 ### Client
 Start the application:
-`npm start` from `client` folder.
+`npm install` then `npm start` from `client` folder.
 
 ### Screenshots
 
