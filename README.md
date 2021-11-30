@@ -4,12 +4,18 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### Server 
 As there was CORS issue with the provided resources, I had to create a nodejs server for trending repositories and developers.
-So, we should start server first, by:
-From `server` folder: run `npm install` then `npm start`.
+
+So, we should start server first:
+
+From `server` folder:
+
+Run `npm install` then `npm start`.
 
 ### Client
-Start the application:
-From `client` folder: run `npm install` then `npm start`.
+
+From `client` folder: 
+
+Run `npm install` then `npm start`.
 
 ### Screenshots
 
